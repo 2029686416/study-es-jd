@@ -28,15 +28,16 @@ public class HtmlParaseUtil {
         Element element = document.getElementById("J_goodsList");
 //        System.out.println(element);
         //获取使用的li标签
-        Elements elements = document.getElementsByTag("li");
+        Elements elements = element.getElementsByTag("li");
         //获取元素中的内容，这里每个el，就是一个li
         ArrayList<Content> goodsList = new ArrayList<>();
         for (Element el : elements) {
-            //关于图片，特别多的网站，所有的图片都是延迟加载的
-            String img = el.getElementsByTag("img").eq(0).attr("source_data_lazy_img");
+            //关于图片，特别多的网站，所有的图片都是延迟加载的  source-data-lazy-img
+//            String img = el.getElementsByTag("img").eq(0).attr("source-data-lazy-img");
+            String img = el.getElementsByTag("img").eq(0).attr("src");
             String price = el.getElementsByClass("p-price").eq(0).text();
             String title = el.getElementsByClass("p-name").eq(0).text();
-            System.out.println("===============");
+//            System.out.println("===============");
             Content content = new Content();
             content.setImg(img);
             content.setPrice(price);
