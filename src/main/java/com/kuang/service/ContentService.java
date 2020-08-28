@@ -10,6 +10,7 @@ import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.client.Client;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.text.Text;
@@ -25,6 +26,7 @@ import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import javax.security.auth.kerberos.KerberosKey;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,6 +38,8 @@ import java.util.concurrent.TimeUnit;
 public class ContentService {
     @Autowired
     private RestHighLevelClient restHigtLevelClient;
+    @Resource(name="esClient")
+    private Client client;
 
     //1、解析数据放入es 索引中
     public Boolean parseContent(String keywords) throws IOException {
